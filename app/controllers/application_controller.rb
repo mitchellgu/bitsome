@@ -11,15 +11,15 @@ class ApplicationController < ActionController::Base
   COINBASE_CALLBACK_URI = 'https://localhost:3000/dashboard/oauth'
 
   def coinbase_client_id
-    !Rails.env.production? ? COINBASE_CLIENT_ID : ENV["COINBASE_CLIENT_ID"]
+    !Rails.env.production? ? COINBASE_CLIENT_ID : '79bc6ea3848ab1a18e8efe451f1c740fa3fb639913c2b41eb3cb20c242528b46'
   end
 
   def coinbase_client_secret
-    !Rails.env.production? ? COINBASE_CLIENT_SECRET : ENV["COINBASE_CLIENT_SECRET"]
+    !Rails.env.production? ? COINBASE_CLIENT_SECRET : '871a186df155c37c90ec1615dd01ff8b4d0c83e8d2d2db0e18365bac164ace5f'
   end
 
   def coinbase_callback_uri
-    !Rails.env.production? ? COINBASE_CALLBACK_URI : ENV["COINBASE_CALLBACK_URI"]
+    !Rails.env.production? ? COINBASE_CALLBACK_URI : 'https://bitso.me/dashboard/oauth'
   end
 
   def check_for_linked_coinbase
