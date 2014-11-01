@@ -39,8 +39,11 @@ class DashboardController < ApplicationController
 	end
 
 	def transact
-		puts params[:amount_usd]
-		redirect_to dashboard_show_path
+		recipient = User.find_by_email(params[:recipient]).coinbase_email.first
+		amount = params[:amount_btc]
+		message = params[:message]
+		r = current_coinbase_client.send_money recipient amount message
+		@status = r.success
 	end
 
 end

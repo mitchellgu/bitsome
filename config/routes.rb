@@ -13,6 +13,7 @@ Rails.application.routes.draw do
    get 'dashboard/oauth'
    get 'dashboard/summary'
    post 'dashboard/transact'
+   # get 'dashboard/transact'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
