@@ -10,7 +10,7 @@ class DashboardController < ApplicationController
 
     @default_currency = 'USD'
     @exchange_rate = current_coinbase_client.spot_price("USD").to_d
-    @members = User.find(:all, :conditions => ["email != ?", current_user.email]) rescue nil
+    @members = User.where("email != ?", current_user.email) rescue nil
 	end
 
 	def summary

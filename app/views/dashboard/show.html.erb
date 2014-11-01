@@ -21,7 +21,7 @@
 
   <h4>Send Money</h4>
 
-	<% if !@members.nil? %>
+	<% if @members.length != 0 %>
 
   <div class="form-group columns small-12 medium-6 large-3">
     <%= select_tag 'recipient', options_from_collection_for_select(@members, "email", "email"), placeholder: 'Recipient Username', class: 'form-control' %>
