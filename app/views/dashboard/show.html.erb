@@ -1,6 +1,41 @@
- 	<%= render('module', load_order: 2, name: 'account_summary', title: 'Account Summary', content_path: dashboard_summary_path, expandable: false) %>
-	<%= render('module', load_order: 1, name: 'transfer', title: 'Send & Request Money', content_path: 'test', expandable: false) %>
-	<%= render('module', load_order: 1, name: 'address_book', title: 'Address Book', content_path: 'test', expandable: false) %>
-	<%= render('module', load_order: 1, name: 'account_activity_history', title: 'Account Activity History', content_path: 'test', expandable: true) %>
-	<%= render('module', load_order: 3, name: 'buy_sell_bitcoin', title: 'Buy & Sell Bitcoin', content_path: 'test', expandable: false) %>
-	<%= render('module', load_order: 1, name: 'activities', title: 'BitStation Feed', content_path: 'test', expandable: false) %>
+<div class="row">
+	<div class="columns small-12 medium-6 large-3">
+		<div class="panel"><%= @current_balance_btc.to_s + " BTC" %></div>
+	</div>
+	<div class="columns small-12 medium-6 large-3">
+		<div class="panel"><%= @current_balance_usd.to_s + " USD" %></div>
+	</div>
+	<div class="columns small-12 medium-6 large-3">
+		<div class="panel"><%= "Buy Price: " + @current_buy_price %></div>
+	</div>
+	<div class="columns small-12 medium-6 large-3">
+		<div class="panel"><%= "Sell Price: " + @current_sell_price %></div>
+	</div>
+</div>
+
+<form>
+  <fieldset>
+	  <legend>Send Money</legend>
+  	<div class="row">
+  		<div class="columns small-12 medium-6 large-3">
+			  <input type="text" placeholder="Recipient Email/Username">
+		  </div>
+		  <div class="columns small-12 medium-6 large-3">
+			  <div class="row">
+					<div class="columns small-6">
+					  <input type="text" placeholder="mBTC">
+				  </div>
+				  <div class="columns small-6">
+					  <input type="text" placeholder="USD">
+				  </div>
+			  </div>
+		  </div>
+  		<div class="columns small-12 medium-6 large-3">
+			  <input type="text" placeholder="Message">
+		  </div>
+  		<div class="columns small-12 medium-6 large-3">
+        <a href="#" class="button postfix">Go</a>
+		  </div>
+	  </div>
+  </fieldset>
+</form>
