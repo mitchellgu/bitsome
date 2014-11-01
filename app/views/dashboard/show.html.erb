@@ -2,7 +2,7 @@
 	<div class="columns small-12 medium-6 large-3">
 		<ul class="vcard">
 			<li class="vcard-heading">BTC Balance</li>
-			<li class="label success round"><%= sprintf('%.2f m', @current_balance_btc*1000) %><i class="fa fa-btc"></i></li>
+			<li class="label success round"><%= sprintf('%.2f m', @current_balance_btc*1000.0) %><i class="fa fa-btc"></i></li>
 		</ul>
 	</div>
 	<div class="columns small-12 medium-6 large-3">
@@ -81,3 +81,9 @@
 		<p>No other members in group to send to!</p>
   <% end %>
 </form>
+
+<div class="row">
+  <div class="columns large-12">
+    <h4>Group Transaction History</h4>
+  </div>
+</div>
