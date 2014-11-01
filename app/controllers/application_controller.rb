@@ -10,17 +10,29 @@ class ApplicationController < ActionController::Base
   COINBASE_CLIENT_SECRET = 'a7a9396ba91e85e9b1bead017e36881a31bf0581fb4f72c808aa07729b114671'
   COINBASE_CALLBACK_URI = 'https://localhost:3000/dashboard/oauth'
 
+  def coinbase_client_id
+    !Rails.env.production? ? COINBASE_CLIENT_ID : ENV["BITSTATION_COINBASE_CLIENT_ID"]
+  end
+
+  def coinbase_client_secret
+    !Rails.env.production? ? COINBASE_CLIENT_SECRET : ENV["BITSTATION_COINBASE_CLIENT_SECRET"]
+  end
+
+  def coinbase_callback_uri
+    !Rails.env.production? ? COINBASE_CALLBACK_URI : ENV["BITSTATION_COINBASE_CALLBACK_URI"]
+  end
+
   def check_for_linked_coinbase
   	redirect_to dashboard_link_coinbase_path if current_user.coinbase_email.nil?
   end
 
   def prepare_oauth_client
-    @oauth_client = OAuth2::Client.new(COINBASE_CLIENT_ID, COINBASE_CLIENT_SECRET, site: 'https://coinbase.com')
+    @oauth_client = OAuth2::Client.new(coinbase_client_id, coinbase_client_secret, site: 'https://coinbase.com')
   end
 
   def current_coinbase_client
     if current_user.oauth_credentials
-      @current_coinbase_client ||= Coinbase::OAuthClient.new(COINBASE_CLIENT_ID, COINBASE_CLIENT_SECRET, current_user.oauth_credentials.symbolize_keys)
+      @current_coinbase_client ||= Coinbase::OAuthClient.new(coinbase_client_id, coinbase_client_secret, current_user.oauth_credentials.symbolize_keys)
     else
       nil
     end

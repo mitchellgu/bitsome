@@ -9,12 +9,12 @@ class DashboardController < ApplicationController
 	end
 
 	def authorize_coinbase
-		redirect_to @oauth_client.auth_code.authorize_url(redirect_uri: COINBASE_CALLBACK_URI) + "&scope=all"
+		redirect_to @oauth_client.auth_code.authorize_url(redirect_uri: coinbase_callback_uri) + "&scope=all"
 	end
 
 	def oauth
     code = params[:code]
-    token = @oauth_client.auth_code.get_token(code, redirect_uri: COINBASE_CALLBACK_URI)
+    token = @oauth_client.auth_code.get_token(code, redirect_uri: coinbase_callback_uri)
 
     current_user.update!({oauth_credentials: token.to_hash})
     email = current_coinbase_client.get('/users').users[0].user.email
