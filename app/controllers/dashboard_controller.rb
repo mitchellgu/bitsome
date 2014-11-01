@@ -7,6 +7,10 @@ class DashboardController < ApplicationController
     @current_balance_usd = current_coinbase_client.spot_price("USD").to_d * @current_balance_btc
     @current_buy_price = current_coinbase_client.buy_price(1).format
     @current_sell_price = current_coinbase_client.sell_price(1).format
+
+    @default_currency = 'USD'
+    @exchange_rate = current_coinbase_client.spot_price("USD").to_d
+    @members = User.find(:all, :conditions => ["email != ?", current_user.email]) rescue nil
 	end
 
 	def summary
@@ -32,6 +36,11 @@ class DashboardController < ApplicationController
 
     flash[:success] = "You have successfully linked your Coinbase account #{email}. "
     redirect_to dashboard_show_path
+	end
+
+	def transact
+		puts params[:amount_usd]
+		redirect_to dashboard_show_path
 	end
 
 end

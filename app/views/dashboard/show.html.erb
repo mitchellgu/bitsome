@@ -13,29 +13,41 @@
 	</div>
 </div>
 
-<form>
-  <fieldset>
-	  <legend>Send Money</legend>
-  	<div class="row">
-  		<div class="columns small-12 medium-6 large-3">
-			  <input type="text" placeholder="Recipient Email/Username">
-		  </div>
-		  <div class="columns small-12 medium-6 large-3">
-			  <div class="row">
-					<div class="columns small-6">
-					  <input type="text" placeholder="mBTC">
-				  </div>
-				  <div class="columns small-6">
-					  <input type="text" placeholder="USD">
-				  </div>
-			  </div>
-		  </div>
-  		<div class="columns small-12 medium-6 large-3">
-			  <input type="text" placeholder="Message">
-		  </div>
-  		<div class="columns small-12 medium-6 large-3">
-        <a href="#" class="button postfix">Go</a>
-		  </div>
-	  </div>
-  </fieldset>
+<p><%= @formcontent rescue "Noasdfne" %></p>
+
+<%= form_tag dashboard_transact_path, id: 'transfer_form', class: 'row' %>
+  <%= hidden_field_tag 'exchange_rate', @exchange_rate %>
+  <%= hidden_field_tag 'fee_amount', (@send_money[:fee_amount] rescue 0) %>
+
+  <h4>Send Money</h4>
+
+	<% if !@members.nil? %>
+
+  <div class="form-group columns small-12 medium-6 large-3">
+    <%= select_tag 'recipient', options_from_collection_for_select(@members, "email", "email"), placeholder: 'Recipient Username', class: 'form-control' %>
+  </div>
+
+  <div class="form-group columns small-12 medium-6 large-3">
+    <div class="row">
+      <div class="columns small-6">
+        <%= text_field_tag 'amount_usd', '', placeholder: 'USD amount', class: 'form-control' %>
+      </div>
+      <div class="columns small-6">
+        <%= text_field_tag 'amount_btc', '', placeholder: 'BTC amount', class: 'form-control' %>
+      </div><!-- /input-group -->
+    </div><!-- /input-group -->
+  </div>
+
+  <div class="form-group columns small-12 medium-6 large-3">
+    <div class="input-group">
+      <%= text_field_tag 'message', '', placeholder: 'A kind word or two', class: 'form-control' %>
+    </div>
+  </div>
+
+	<div class="form-group columns small-12 medium-6 large-3">
+  	<%= submit_tag 'Send Money', class: 'button postfix' %>
+  </div>
+	<% else %>
+		<p>No other members in group to send to!</p>
+  <% end %>
 </form>
