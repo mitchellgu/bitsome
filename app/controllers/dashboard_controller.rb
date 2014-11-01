@@ -39,11 +39,18 @@ class DashboardController < ApplicationController
 	end
 
 	def transact
-		recipient = User.find_by_email(params[:recipient]).coinbase_email.first
-		amount = params[:amount_btc]
+		recipient = User.find_by_email(params[:recipient]).coinbase_email
+		amount = params[:amount_btc].to_f
 		message = params[:message]
-		r = current_coinbase_client.send_money recipient amount message
-		@status = r.success
+		
+		begin
+			r = current_coinbase_client.send_money recipient, amount, message
+			r.success ? flash[:success] = "Transaction completed!" : flash[:alert] = "Transaction Unsuccessful"
+			redirect_to dashboard_show_path
+		rescue => e
+      flash[:alert] = "Transaction failed. " + e.message
+      redirect_to dashboard_show_url
+    end
 	end
 
 end
