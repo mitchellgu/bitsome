@@ -32,6 +32,13 @@ gem 'foundation-rails'
 # Devise authentication
 gem 'devise'
 
+# Coinbase support
+gem 'coinbase'
+gem 'oauth2'
+
+# Thin for dev ssl server
+gem 'thin'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

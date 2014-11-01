@@ -8,6 +8,9 @@ Rails.application.routes.draw do
 
    get 'static_pages/homepage'
    get 'dashboard/show'
+   get 'dashboard/link_coinbase'
+   get 'dashboard/authorize_coinbase'
+   get 'dashboard/oauth'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
