@@ -1,6 +1,4 @@
-<h1>Welcome to Dashboard</h1>
-
- 	<%= render('module', load_order: 2, name: 'account_summary', title: 'Account Summary', content_path: 'test', expandable: false) %>
+ 	<%= render('module', load_order: 2, name: 'account_summary', title: 'Account Summary', content_path: dashboard_summary_path, expandable: false) %>
 	<%= render('module', load_order: 1, name: 'transfer', title: 'Send & Request Money', content_path: 'test', expandable: false) %>
 	<%= render('module', load_order: 1, name: 'address_book', title: 'Address Book', content_path: 'test', expandable: false) %>
 	<%= render('module', load_order: 1, name: 'account_activity_history', title: 'Account Activity History', content_path: 'test', expandable: true) %>

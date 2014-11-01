@@ -11,6 +11,7 @@ Rails.application.routes.draw do
    get 'dashboard/link_coinbase'
    get 'dashboard/authorize_coinbase'
    get 'dashboard/oauth'
+   get 'dashboard/summary'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

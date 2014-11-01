@@ -5,6 +5,11 @@ class DashboardController < ApplicationController
 	def show
 	end
 
+	def summary
+		@balance = current_coinbase_client.balance.format
+		render layout: false
+	end
+
 	def link_coinbase
 	end
 
