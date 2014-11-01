@@ -3,8 +3,8 @@ class DashboardController < ApplicationController
 	before_filter :check_for_linked_coinbase, only: [:show]
 	
 	def show
-    @current_balance_btc = current_coinbase_client.balance.to_d.round(3)
-    @current_balance_usd = (current_coinbase_client.spot_price("USD").to_d * @current_balance_btc).round(2)
+    @current_balance_btc = current_coinbase_client.balance.to_d
+    @current_balance_usd = current_coinbase_client.spot_price("USD").to_d * @current_balance_btc
     @current_buy_price = current_coinbase_client.buy_price(1).format
     @current_sell_price = current_coinbase_client.sell_price(1).format
 
@@ -40,11 +40,11 @@ class DashboardController < ApplicationController
 
 	def transact
 		recipient = User.find_by_email(params[:recipient]).coinbase_email
-		amount = params[:amount_btc].to_f
+		amount = params[:currency] == "USD" ? params[:amount_usd].to_f : params[:amount_btc].to_f
 		message = params[:message]
 		
 		begin
-			r = current_coinbase_client.send_money recipient, amount, message
+			r = current_coinbase_client.send_money recipient, amount.to_money(params[:currency]), message
 			r.success ? flash[:success] = "Transaction completed!" : flash[:alert] = "Transaction Unsuccessful"
 			redirect_to dashboard_show_path
 		rescue => e

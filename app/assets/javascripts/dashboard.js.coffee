@@ -18,6 +18,8 @@ ready = ->
   $(document.body).on 'keyup', '#transfer_form input[name=amount_usd], #transfer_form input[name=amount_btc]', (event) ->
     exchange_rate = parseFloat($('#transfer_form input[name=exchange_rate]').val())
     usd_to_btc = ($(this).attr('name') == 'amount_usd')
+    currency = if usd_to_btc then "USD" else "BTC"
+    $("#currency").val(currency)
     rate = (if usd_to_btc then (1.0 / exchange_rate) else exchange_rate)
     other = $(this).parent().parent().find('input[name!=' + $(this).attr('name') + ']').first()
     console.log $('#transfer_form input[name=amount_usd], #transfer_form input[name=amount_btc]').remove($(this))

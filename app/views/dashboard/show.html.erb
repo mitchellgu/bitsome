@@ -2,13 +2,13 @@
 	<div class="columns small-12 medium-6 large-3">
 		<ul class="vcard">
 			<li class="vcard-heading">BTC Balance</li>
-			<li class="label success round"><%= @current_balance_btc.to_s %> <i class="fa fa-btc"></i></li>
+			<li class="label success round"><%= sprintf('%.2f m', @current_balance_btc*1000) %><i class="fa fa-btc"></i></li>
 		</ul>
 	</div>
 	<div class="columns small-12 medium-6 large-3">
 		<ul class="vcard">
 			<li class="vcard-heading">USD Balance</li>
-			<li class="label success round">$<%= @current_balance_usd.to_s %></li>
+			<li class="label success round">$<%= sprintf('%.2f', @current_balance_usd) %></li>
 		</ul>
 	</div>
 	<div class="columns small-12 medium-6 large-3">
@@ -28,6 +28,7 @@
 <%= form_tag dashboard_transact_path, id: 'transfer_form', class: 'row' %>
   <%= hidden_field_tag 'exchange_rate', @exchange_rate %>
   <%= hidden_field_tag 'fee_amount', (@send_money[:fee_amount] rescue 0) %>
+  <%= hidden_field_tag 'currency', "USD" %>
 
   <div class="columns small-12"><h4>Send Money</h4></div>
 
