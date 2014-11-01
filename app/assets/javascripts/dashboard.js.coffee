@@ -15,5 +15,13 @@ ready = ->
           FB.XFBML.parse()
       })
 
+  $(document.body).on 'keyup', '#transfer_form input[name=amount_usd], #transfer_form input[name=amount_btc]', (event) ->
+    exchange_rate = parseFloat($('#transfer_form input[name=exchange_rate]').val())
+    usd_to_btc = ($(this).attr('name') == 'amount_usd')
+    rate = (if usd_to_btc then (1.0 / exchange_rate) else exchange_rate)
+    other = $(this).parent().parent().find('input[name!=' + $(this).attr('name') + ']').first()
+    console.log $('#transfer_form input[name=amount_usd], #transfer_form input[name=amount_btc]').remove($(this))
+    other.val(Math.round(parseFloat($(this).val()) * rate * 100)/100)
+
 $(document).ready(ready)
 $(document).on('page:load', ready)

@@ -24,23 +24,42 @@
 	<% if @members.count != 0 %>
 
   <div class="form-group columns small-12 medium-6 large-3">
-    <%= select_tag 'recipient', options_from_collection_for_select(@members, "email", "email"), placeholder: 'Recipient Username', class: 'form-control' %>
+    <div class="row collapse">
+      <div class="small-2 columns">
+        <span class="prefix">To:</span>
+      </div>
+      <div class="small-10 columns">
+    		<%= select_tag 'recipient', options_from_collection_for_select(@members, "email", "email"), placeholder: 'Recipient Username', class: 'form-control' %>
+      </div>
+    </div>
   </div>
 
   <div class="form-group columns small-12 medium-6 large-3">
-    <div class="row">
-      <div class="columns small-6">
-        <%= text_field_tag 'amount_usd', '', placeholder: 'USD amount', class: 'form-control' %>
+    <div class="row collapse">
+    	<div class="columns small-1"><span class="prefix">$</span></div>
+      <div class="columns small-4">
+        <%= text_field_tag 'amount_usd', '', placeholder: 'USD', class: 'form-control prefix' %>
       </div>
-      <div class="columns small-6">
-        <%= text_field_tag 'amount_btc', '', placeholder: 'BTC amount', class: 'form-control' %>
+      <div class="columns small-2">
+      	<span class="postfix prefix"><i class="fa fa-arrows-h"></i></span>
+      </div>
+      <div class="columns small-4">
+        <%= text_field_tag 'amount_btc', '', placeholder: 'BTC', class: 'form-control postfix' %>
       </div><!-- /input-group -->
+    	<div class="columns small-1"><span class="postfix"><i class="fa fa-btc"></i></span></div>
     </div><!-- /input-group -->
   </div>
 
   <div class="form-group columns small-12 medium-6 large-3">
-    <div class="input-group">
-      <%= text_field_tag 'message', '', placeholder: 'A kind word or two', class: 'form-control' %>
+    <div class="row collapse">
+      <div class="small-4 columns">
+        <span class="prefix">Message:</span>
+      </div>
+      <div class="small-8 columns">
+		    <div class="input-group">
+		      <%= text_field_tag 'message', '', placeholder: 'A kind word or two', class: 'form-control' %>
+		    </div>
+	    </div>
     </div>
   </div>
 
