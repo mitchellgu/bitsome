@@ -16,3 +16,7 @@
  *= require font-awesome
 
  */
+
+#wrapper {
+	padding: 20px 0;
+}
