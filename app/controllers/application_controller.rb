@@ -1,4 +1,5 @@
 require "oauth2"
+require 'bitsome_coinbase_client'
 
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
@@ -30,9 +31,13 @@ class ApplicationController < ActionController::Base
     @oauth_client = OAuth2::Client.new(coinbase_client_id, coinbase_client_secret, site: 'https://coinbase.com')
   end
 
+  def coinbase_client_with_oauth_credentials(credentials, user = nil)
+    BitSomeCoinbaseClient.new(coinbase_client_id, coinbase_client_secret, credentials.symbolize_keys, user)
+  end
+
   def current_coinbase_client
     if current_user.oauth_credentials
-      @current_coinbase_client ||= Coinbase::OAuthClient.new(coinbase_client_id, coinbase_client_secret, current_user.oauth_credentials.symbolize_keys)
+      @current_coinbase_client ||= coinbase_client_with_oauth_credentials(current_user.oauth_credentials, current_user)
     else
       nil
     end

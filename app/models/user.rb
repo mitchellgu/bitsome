@@ -5,4 +5,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   serialize :oauth_credentials
+
+ 	def token_expires_in?(time)
+ 		oauth_credentials ?
+     (Time.at(oauth_credentials[:expires_at]) - Time.now) <= time :
+     false
+  end
 end
