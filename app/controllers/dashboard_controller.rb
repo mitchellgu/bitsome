@@ -3,8 +3,8 @@ class DashboardController < ApplicationController
 	before_filter :check_for_linked_coinbase, only: [:show]
 	
 	def show
-    @current_balance_btc = current_coinbase_client.balance.to_d
-    @current_balance_usd = current_coinbase_client.spot_price("USD").to_d * @current_balance_btc
+    @current_balance_btc = current_coinbase_client.balance.to_d.round(3)
+    @current_balance_usd = (current_coinbase_client.spot_price("USD").to_d * @current_balance_btc).round(2)
     @current_buy_price = current_coinbase_client.buy_price(1).format
     @current_sell_price = current_coinbase_client.sell_price(1).format
 

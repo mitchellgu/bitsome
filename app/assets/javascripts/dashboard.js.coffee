@@ -21,7 +21,7 @@ ready = ->
     rate = (if usd_to_btc then (1.0 / exchange_rate) else exchange_rate)
     other = $(this).parent().parent().find('input[name!=' + $(this).attr('name') + ']').first()
     console.log $('#transfer_form input[name=amount_usd], #transfer_form input[name=amount_btc]').remove($(this))
-    other.val(Math.round(parseFloat($(this).val()) * rate * 100)/100)
+    other.val(parseFloat($(this).val()) * rate)
 
 $(document).ready(ready)
 $(document).on('page:load', ready)

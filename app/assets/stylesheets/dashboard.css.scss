@@ -10,3 +10,14 @@
 	margin-top: 125px;
 	text-align: center;
 }
+
+.vcard {
+	width: 100%;
+	text-align: center;
+	.vcard-heading{
+		font-weight: bold;
+	}
+	.label {
+		font-size: inherit;
+	}
+}
