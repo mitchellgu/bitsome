@@ -19,6 +19,7 @@ class DashboardController < ApplicationController
 	end
 
 	def graph_canvas
+		@nodes = User.all
 		render layout: false
 	end
 
