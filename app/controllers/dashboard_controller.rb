@@ -14,7 +14,7 @@ class DashboardController < ApplicationController
 	end
 
 	def transaction_history
-    @data = Transaction.order(:created_at)
+    @data = Transaction.order("time DESC")
     @max = Transaction.maximum("amount")
 		render layout: false
 	end
