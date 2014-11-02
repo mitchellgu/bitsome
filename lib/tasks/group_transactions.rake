@@ -33,8 +33,8 @@ namespace :group_transactions do
                 u.transaction_id = t['id']
                 u.time = t['created_at']
                 u.amount = t['amount'].amount.to_d.abs
-                u.sender = t['sender']['email']
-                u.receiver = t['recipient']['email']
+                u.sender = User.find_by_coinbase_email(t['sender']['email']).email
+                u.receiver = User.find_by_coinbase_email(t['recipient']['email']).email
               end
               transaction.save
             end
