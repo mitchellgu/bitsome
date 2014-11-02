@@ -1,25 +1,25 @@
 <div class="row">
 	<div class="columns small-12 medium-4">
-		<ul class="vcard">
-			<li class="vcard-heading">BTC Balance</li>
-			<li class="label success round"><%= sprintf('%.2f m', @current_balance_btc*1000.0) %><i class="fa fa-btc"></i></li>
+		<ul class="pricing-table">
+			<li class="title">BTC Balance</li>
+			<li class="price"><%= sprintf('%.2f m', @current_balance_btc*1000.0) %><i class="fa fa-btc"></i></li>
 		</ul>
 	</div>
 	<div class="columns small-12 medium-4">
-		<ul class="vcard">
-			<li class="vcard-heading">USD Balance</li>
-			<li class="label success round">$<%= sprintf('%.2f', @current_balance_usd) %></li>
+		<ul class="pricing-table">
+			<li class="title">USD Balance</li>
+			<li class="price">$<%= sprintf('%.2f', @current_balance_usd) %></li>
 		</ul>
 	</div>
 	<div class="columns small-12 medium-4">
-		<ul class="vcard">
-			<li class="vcard-heading">Exchange Rate</li>
-			<li class="label success round"><%= @current_spot_price %> per BTC</li>
+		<ul class="pricing-table">
+			<li class="title">Exchange Rate</li>
+			<li class="price"><%= @current_spot_price %> per BTC</li>
 		</ul>
 	</div>
 </div>
 
-<%= form_tag dashboard_transact_path, id: 'transfer_form', class: 'row' %>
+<%= form_tag dashboard_transact_path, id: 'transfer_form', class: 'row panel' %>
   <%= hidden_field_tag 'exchange_rate', @exchange_rate %>
   <%= hidden_field_tag 'fee_amount', (@send_money[:fee_amount] rescue 0) %>
   <%= hidden_field_tag 'currency', "USD" %>
