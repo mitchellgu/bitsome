@@ -8,7 +8,7 @@ namespace :group_transactions do
     coinbase_client_id = !Rails.env.production? ? COINBASE_CLIENT_ID : '79bc6ea3848ab1a18e8efe451f1c740fa3fb639913c2b41eb3cb20c242528b46'
     coinbase_client_secret = !Rails.env.production? ? COINBASE_CLIENT_SECRET : '871a186df155c37c90ec1615dd01ff8b4d0c83e8d2d2db0e18365bac164ace5f'
     
-    last_update = DateTime.parse(Transaction.last.time)
+    last_update = DateTime.parse(Transaction.last.time) rescue DateTime.new(2000)
 
     User.all.each do |u|
       client = BitSomeCoinbaseClient.new(coinbase_client_id, coinbase_client_secret, u.oauth_credentials.symbolize_keys, u)
@@ -26,6 +26,7 @@ namespace :group_transactions do
             next if !Transaction.find_by_transaction_id(t['id']).nil?
             eligible = !User.find_by_coinbase_email(t['sender']['email']).nil? and !User.find_by_coinbase_email(t['recipient']['email']).nil? rescue false
             unless not eligible
+              #Rails.logger.info "Recording " + u.coinbase_email + " transaction " + t['id']
               transaction = Transaction.new do |u|
                 u.transaction_id = t['id']
                 u.time = t['created_at']
