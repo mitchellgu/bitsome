@@ -11,6 +11,7 @@ namespace :group_transactions do
     last_update = DateTime.parse(Transaction.last.time) rescue DateTime.new(2000)
 
     User.all.each do |u|
+      next if u.oauth_credentials.nil?
       client = BitSomeCoinbaseClient.new(coinbase_client_id, coinbase_client_secret, u.oauth_credentials.symbolize_keys, u)
       
       page = 1
