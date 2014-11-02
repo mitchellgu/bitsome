@@ -43,7 +43,7 @@ gem 'thin'
 gem "font-awesome-rails"
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.9'
 
 # Use unicorn as the app server
 # gem 'unicorn'
