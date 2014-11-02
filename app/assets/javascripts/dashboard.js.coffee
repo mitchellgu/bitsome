@@ -25,5 +25,7 @@ ready = ->
     console.log $('#transfer_form input[name=amount_usd], #transfer_form input[name=amount_btc]').remove($(this))
     other.val(parseFloat($(this).val()) * rate)
 
+  $("#transaction-history").load($("#transaction-history").attr('data-load'))
+
 $(document).ready(ready)
 $(document).on('page:load', ready)
