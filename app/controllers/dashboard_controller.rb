@@ -6,8 +6,7 @@ class DashboardController < ApplicationController
 		client = current_coinbase_client
     @current_balance_btc = client.balance.to_d
     @current_balance_usd = client.spot_price("USD").to_d * @current_balance_btc
-    @current_buy_price = client.buy_price(1).format
-    @current_sell_price = client.sell_price(1).format
+    @current_spot_price = client.spot_price.format
 
     @default_currency = 'USD'
     @exchange_rate = client.spot_price("USD").to_d

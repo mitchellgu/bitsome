@@ -1,26 +1,20 @@
 <div class="row">
-	<div class="columns small-12 medium-6 large-3">
+	<div class="columns small-12 medium-4">
 		<ul class="vcard">
 			<li class="vcard-heading">BTC Balance</li>
 			<li class="label success round"><%= sprintf('%.2f m', @current_balance_btc*1000.0) %><i class="fa fa-btc"></i></li>
 		</ul>
 	</div>
-	<div class="columns small-12 medium-6 large-3">
+	<div class="columns small-12 medium-4">
 		<ul class="vcard">
 			<li class="vcard-heading">USD Balance</li>
 			<li class="label success round">$<%= sprintf('%.2f', @current_balance_usd) %></li>
 		</ul>
 	</div>
-	<div class="columns small-12 medium-6 large-3">
+	<div class="columns small-12 medium-4">
 		<ul class="vcard">
-			<li class="vcard-heading">Buy Price</li>
-			<li class="label success round"><%= @current_buy_price %></li>
-		</ul>
-	</div>
-	<div class="columns small-12 medium-6 large-3">
-		<ul class="vcard">
-			<li class="vcard-heading">Sell Price</li>
-			<li class="label success round"><%= @current_sell_price %></li>
+			<li class="vcard-heading">Exchange Rate</li>
+			<li class="label success round"><%= @current_spot_price %> per BTC</li>
 		</ul>
 	</div>
 </div>
@@ -83,13 +77,10 @@
 </form>
 
 <div class="row">
-  <div class="columns large-12">
-    <h4>Group Transaction History</h4>
-    <div id="transaction-history" data-load="<%= dashboard_transaction_history_path %>">
-      <div>
-        <div class="dashboard-module-spinner-container">
-          <i class="fa fa-circle-o-notch fa-spin fa-2x"></i>
-        </div>
+  <div id="transaction-history" data-load="<%= dashboard_transaction_history_path %>">
+    <div>
+      <div class="dashboard-module-spinner-container">
+        <i class="fa fa-circle-o-notch fa-spin fa-2x"></i>
       </div>
     </div>
   </div>
