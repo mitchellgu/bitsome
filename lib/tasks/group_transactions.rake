@@ -25,8 +25,8 @@ namespace :group_transactions do
             throw :done if last_update >= DateTime.parse(t['created_at'])
             next if t['request']
             next if !Transaction.find_by_transaction_id(t['id']).nil?
-            eligible = !User.find_by_coinbase_email(t['sender']['email']).nil? and !User.find_by_coinbase_email(t['recipient']['email']).nil? rescue false
-            unless not eligible
+            ineligible = User.find_by_coinbase_email(t['sender']['email']).nil? || User.find_by_coinbase_email(t['recipient']['email']).nil? rescue true
+            unless ineligible
               puts "Recording " + u.coinbase_email + " transaction " + t['id']
               puts t.symbolize_keys
               transaction = Transaction.new do |u|
