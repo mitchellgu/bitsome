@@ -1,3 +1,5 @@
+require "yo-ruby"
+
 class DashboardController < ApplicationController
 	before_filter :authenticate_user!, only: [:show]
 	before_filter :check_for_linked_coinbase, only: [:show]
@@ -68,6 +70,8 @@ class DashboardController < ApplicationController
 			r = current_coinbase_client.send_money recipient, amount.to_money(params[:currency]), message
 			r.success ? flash[:success] = "Transaction completed!" : flash[:alert] = "Transaction Unsuccessful"
 			system "/home/bitsome/app/bin/rake RAILS_ENV=production group_transactions:update"
+			Yo.api_key = "e77e47dc-57a2-4542-8f9e-0e75f3bcfb23"
+			Yo.all!(link: "https://bitso.me")
 			redirect_to dashboard_show_path
 		rescue => e
       flash[:alert] = "Transaction failed. " + e.message
