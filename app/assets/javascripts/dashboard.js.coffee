@@ -26,6 +26,7 @@ ready = ->
     other.val(parseFloat($(this).val()) * rate)
 
   $("#transaction-history").load($("#transaction-history").attr('data-load'))
+  $("#graph-canvas").load($("#graph-canvas").attr('data-load'))
 
 $(document).ready(ready)
 $(document).on('page:load', ready)

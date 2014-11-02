@@ -18,6 +18,10 @@ class DashboardController < ApplicationController
 		render layout: false
 	end
 
+	def graph_canvas
+		render layout: false
+	end
+
 	def link_coinbase
 	end
 

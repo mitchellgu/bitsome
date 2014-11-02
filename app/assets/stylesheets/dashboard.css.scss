@@ -21,3 +21,18 @@
 		font-size: inherit;
 	}
 }
+
+#transaction-history-table {
+	width: 100%;
+	.label {
+		width: 100%;
+	}
+	td {
+		text-align: center;
+	}
+}
+
+canvas {
+	display: block;
+	margin: 0 auto;
+}

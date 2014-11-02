@@ -77,8 +77,17 @@
 </form>
 
 <div class="row">
+  <div id="graph-canvas" data-load="<%= dashboard_graph_canvas_path %>">
+    <div class="columns small-centered small-12">
+      <div class="dashboard-module-spinner-container">
+        <i class="fa fa-circle-o-notch fa-spin fa-2x"></i>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
   <div id="transaction-history" data-load="<%= dashboard_transaction_history_path %>">
-    <div>
+    <div class="columns small-centered large-8 medium-10 small-12">
       <div class="dashboard-module-spinner-container">
         <i class="fa fa-circle-o-notch fa-spin fa-2x"></i>
       </div>

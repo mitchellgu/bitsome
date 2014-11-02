@@ -12,6 +12,7 @@ Rails.application.routes.draw do
    get 'dashboard/authorize_coinbase'
    get 'dashboard/oauth'
    get 'dashboard/transaction_history'
+   get 'dashboard/graph_canvas'
    post 'dashboard/transact'
 
   # Example of regular route:
