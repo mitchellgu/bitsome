@@ -26,7 +26,7 @@ namespace :group_transactions do
             next if !Transaction.find_by_transaction_id(t['id']).nil?
             eligible = !User.find_by_coinbase_email(t['sender']['email']).nil? and !User.find_by_coinbase_email(t['recipient']['email']).nil? rescue false
             unless not eligible
-              #Rails.logger.info "Recording " + u.coinbase_email + " transaction " + t['id']
+              puts "Recording " + u.coinbase_email + " transaction " + t['id']
               transaction = Transaction.new do |u|
                 u.transaction_id = t['id']
                 u.time = t['created_at']
