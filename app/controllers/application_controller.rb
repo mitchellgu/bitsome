@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_filter :prepare_oauth_client
+  before_filter :configure_devise_permitted_parameters, if: :devise_controller?
 
   COINBASE_CLIENT_ID = '7abefe9ae0829021549ad7f51e7e8c18aaafa55852ff09c4d258dbf0454a106e'
   COINBASE_CLIENT_SECRET = 'a7a9396ba91e85e9b1bead017e36881a31bf0581fb4f72c808aa07729b114671'
@@ -40,6 +41,20 @@ class ApplicationController < ActionController::Base
       @current_coinbase_client ||= coinbase_client_with_oauth_credentials(current_user.oauth_credentials, current_user)
     else
       nil
+    end
+  end
+
+  def configure_devise_permitted_parameters
+    registration_params = [:name, :email, :password, :password_confirmation]
+
+    if params[:action] == 'update'
+      devise_parameter_sanitizer.for(:account_update) { 
+        |u| u.permit(registration_params << :current_password)
+      }
+    elsif params[:action] == 'create'
+      devise_parameter_sanitizer.for(:sign_up) { 
+        |u| u.permit(registration_params) 
+      }
     end
   end
 
