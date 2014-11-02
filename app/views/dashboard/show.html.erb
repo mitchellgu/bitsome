@@ -19,7 +19,7 @@
 	</div>
 </div>
 
-<%= form_tag dashboard_transact_path, id: 'transfer_form', class: 'row panel' %>
+<%= form_tag dashboard_transact_path, id: 'transfer_form', class: 'row' %>
   <%= hidden_field_tag 'exchange_rate', @exchange_rate %>
   <%= hidden_field_tag 'fee_amount', (@send_money[:fee_amount] rescue 0) %>
   <%= hidden_field_tag 'currency', "USD" %>
@@ -34,28 +34,28 @@
         <span class="prefix">To:</span>
       </div>
       <div class="small-10 columns">
-    		<%= select_tag 'recipient', options_from_collection_for_select(@members, "email", "email"), placeholder: 'Recipient Username', class: 'form-control' %>
+    		<%= select_tag 'recipient', options_from_collection_for_select(@members, "name", "name"), placeholder: 'Recipient Username', class: 'form-control' %>
       </div>
     </div>
   </div>
 
   <div class="form-group columns small-12 medium-6 large-3">
     <div class="row collapse">
-    	<div class="columns small-1"><span class="prefix">$</span></div>
-      <div class="columns small-4">
+    	<div class="columns small-2"><span class="prefix">$</span></div>
+      <div class="columns small-3">
         <%= text_field_tag 'amount_usd', '', placeholder: 'USD', class: 'form-control prefix' %>
       </div>
       <div class="columns small-2">
       	<span class="postfix prefix"><i class="fa fa-arrows-h"></i></span>
       </div>
-      <div class="columns small-4">
+      <div class="columns small-3">
         <%= text_field_tag 'amount_btc', '', placeholder: 'BTC', class: 'form-control postfix' %>
       </div><!-- /input-group -->
-    	<div class="columns small-1"><span class="postfix"><i class="fa fa-btc"></i></span></div>
+    	<div class="columns small-2"><span class="postfix"><i class="fa fa-btc"></i></span></div>
     </div><!-- /input-group -->
   </div>
 
-  <div class="form-group columns small-12 medium-6 large-3">
+  <div class="form-group columns small-12 medium-6 large-4">
     <div class="row collapse">
       <div class="small-4 columns">
         <span class="prefix">Message:</span>
@@ -68,8 +68,8 @@
     </div>
   </div>
 
-	<div class="form-group columns small-12 medium-6 large-3">
-  	<%= submit_tag 'Send Money', class: 'button postfix' %>
+	<div class="form-group columns small-12 medium-6 large-2">
+  	<%= submit_tag 'Send', class: 'button round postfix' %>
   </div>
 	<% else %>
 		<p>No other members in group to send to!</p>

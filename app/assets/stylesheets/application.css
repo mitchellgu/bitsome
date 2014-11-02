@@ -20,3 +20,7 @@
 #wrapper {
 	padding: 20px 0;
 }
+
+.top-bar .row {
+	max-width: 62.5rem;
+}

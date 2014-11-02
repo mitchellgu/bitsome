@@ -28,7 +28,7 @@ Copyright (c) 2010 Dennis Hotson
 jQuery.fn.springy = function(params) {
 	var graph = this.graph = params.graph || new Springy.Graph();
 	var nodeFont = "18px Arial, sans-serif";
-	var edgeFont = "12px Helvetica, sans-serif";
+	var edgeFont = "14px Helvetica, sans-serif";
 	var stiffness = params.stiffness || 400.0;
 	var repulsion = params.repulsion || 100.0;
 	var damping = params.damping || 0.25;
@@ -279,7 +279,7 @@ jQuery.fn.springy = function(params) {
 				ctx.font = (edge.data.font !== undefined) ? edge.data.font : edgeFont;
 				ctx.fillStyle = stroke;
 				var angle = Math.atan2(s2.y - s1.y, s2.x - s1.x);
-				var displacement = -12;
+				var displacement = -15;
 				if (edgeLabelsUpright && (angle > Math.PI/2 || angle < -Math.PI/2)) {
 					displacement = -4;
 					angle += Math.PI;
@@ -324,7 +324,7 @@ jQuery.fn.springy = function(params) {
 				ctx.textAlign = "left";
 				ctx.textBaseline = "top";
 				ctx.font = (node.data.font !== undefined) ? node.data.font : nodeFont;
-				ctx.fillStyle = "#000000";
+				ctx.fillStyle = "#DADADA";
 				var text = (node.data.label !== undefined) ? node.data.label : node.id;
 				ctx.fillText(text, s.x - contentWidth/2, s.y - contentHeight/2);
 			} else {

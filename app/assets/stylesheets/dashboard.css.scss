@@ -32,7 +32,22 @@
 	}
 }
 
+.button.round.postfix {
+	border-radius: 1000px !important ;
+}
+
+.pricing-table .price {
+	font-size: 1.5rem !important;
+}
+
 canvas {
 	display: block;
-	margin: 0 auto;
+	margin: 20px auto;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	background-color: #333;
+	-webkit-box-shadow: 0px 0px 50px 0px rgba(20, 20, 20, 1);
+	-moz-box-shadow:    0px 0px 50px 0px rgba(20, 20, 20, 1);
+	box-shadow:         0px 0px 50px 0px rgba(20, 20, 20, 1);
 }

@@ -15,6 +15,7 @@ class DashboardController < ApplicationController
 
 	def transaction_history
     @data = Transaction.all
+    @max = Transaction.maximum("amount")
 		render layout: false
 	end
 
@@ -59,7 +60,7 @@ class DashboardController < ApplicationController
 	end
 
 	def transact
-		recipient = User.find_by_email(params[:recipient]).coinbase_email
+		recipient = User.find_by_name(params[:recipient]).coinbase_email
 		amount = params[:currency] == "USD" ? params[:amount_usd].to_f : params[:amount_btc].to_f
 		message = params[:message]
 		

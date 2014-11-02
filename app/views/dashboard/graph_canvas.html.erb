@@ -13,7 +13,7 @@
 	<% end %>
 
 	<% @edges.each do |i| %>
-		graph.newEdge(<%= i[1] %>, <%= i[2] %>, {color: blendColors("#254A27","#10C91C", <%= i[0]/@max %>), weight: 2, label: "<%= sprintf('%.2f', i[0] * 1000) %> mBTC"});
+		graph.newEdge(<%= i[1] %>, <%= i[2] %>, {color: blendColors("#005B69","#00AcDa", <%= i[0]/@max %>), weight: 2, label: "<%= sprintf('%.2f', i[0] * 1000) %> mBTC"});
 	<% end %>
 
 	jQuery(function(){
