@@ -6,10 +6,8 @@
 		var <%= n.name.downcase.split.join %> = graph.newNode({label: "<%= n.name %>"});
 	<% end %>
 
-	<% @nodes.each_with_index do |n, i| %>
-		<% @nodes.each_with_index.reject {|m,j| i == j}.each do |m,j| %>
-			graph.newEdge(<%= n.name.downcase.split.join %>, <%= m.name.downcase.split.join %>, {color: '#00FF00'});
-		<% end %>
+	<% @edges.each do |i| %>
+		graph.newEdge(<%= i[1] %>, <%= i[2] %>, {color: '#00FF00'});
 	<% end %>
 
 	jQuery(function(){

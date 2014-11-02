@@ -20,6 +20,19 @@ class DashboardController < ApplicationController
 
 	def graph_canvas
 		@nodes = User.all
+		@edges = []
+		@nodes.each_with_index do |n,i|
+			@nodes.each_with_index.reject {|m,j| i == j}.each do |m,j|
+				net = 0
+				Transaction.where(:sender=>m.name).where(:receiver=>n.name).each do |t|
+					net += t.amount
+				end
+				if net > 0
+					@edges += [[net,m.name.downcase.split.join,n.name.downcase.split.join]] 
+				end
+			end
+		end
+		print @edges
 		render layout: false
 	end
 
