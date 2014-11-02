@@ -28,6 +28,7 @@ namespace :group_transactions do
             eligible = !User.find_by_coinbase_email(t['sender']['email']).nil? and !User.find_by_coinbase_email(t['recipient']['email']).nil? rescue false
             unless not eligible
               puts "Recording " + u.coinbase_email + " transaction " + t['id']
+              puts t.symbolize_keys
               transaction = Transaction.new do |u|
                 u.transaction_id = t['id']
                 u.time = t['created_at']

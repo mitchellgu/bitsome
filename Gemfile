@@ -45,6 +45,9 @@ gem "font-awesome-rails"
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.9'
 
+# Whenever for rake
+gem 'whenever'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
