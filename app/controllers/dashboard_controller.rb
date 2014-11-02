@@ -67,6 +67,7 @@ class DashboardController < ApplicationController
 		begin
 			r = current_coinbase_client.send_money recipient, amount.to_money(params[:currency]), message
 			r.success ? flash[:success] = "Transaction completed!" : flash[:alert] = "Transaction Unsuccessful"
+			call_rake("group_transactions:update", {:rails_env=>"production"})
 			redirect_to dashboard_show_path
 		rescue => e
       flash[:alert] = "Transaction failed. " + e.message
