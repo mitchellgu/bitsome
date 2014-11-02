@@ -24,3 +24,9 @@
 .top-bar .row {
 	max-width: 62.5rem;
 }
+
+.title-area{
+	position: absolute !important;
+	width: 100%;
+	text-align: center;
+}
