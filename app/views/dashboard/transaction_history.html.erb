@@ -8,6 +8,7 @@
         <th>Sender</th>
         <th><i class="fa fa-arrow-right"></i></th>
         <th>Recipient</th>
+        <th>Message</th>
       </tr>
     </thead>
     <tbody>
@@ -28,8 +29,14 @@
         <td>
           <%= e.receiver %>
         </td>
+        <td style="width: 150px;"><%= e.notes %></td>
       </tr>
     <% end %>
     </tbody>
   </table>
+  <div class="hide reveal-modal" id="modal">
+    <h2>Transaction Details</h2>
+    <p class="lead">Note Content</p>
+    <a href="">View this transaction on Coinbase</a>
+  </div>
 </div>
