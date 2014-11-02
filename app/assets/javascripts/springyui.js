@@ -27,11 +27,11 @@ Copyright (c) 2010 Dennis Hotson
 
 jQuery.fn.springy = function(params) {
 	var graph = this.graph = params.graph || new Springy.Graph();
-	var nodeFont = "16px Verdana, sans-serif";
-	var edgeFont = "8px Verdana, sans-serif";
+	var nodeFont = "18px Arial, sans-serif";
+	var edgeFont = "12px Helvetica, sans-serif";
 	var stiffness = params.stiffness || 400.0;
-	var repulsion = params.repulsion || 400.0;
-	var damping = params.damping || 0.5;
+	var repulsion = params.repulsion || 100.0;
+	var damping = params.damping || 0.25;
 	var minEnergyThreshold = params.minEnergyThreshold || 0.00001;
 	var nodeSelected = params.nodeSelected || null;
 	var nodeImages = {};
@@ -207,7 +207,7 @@ jQuery.fn.springy = function(params) {
 			}
 
 			//change default to  10.0 to allow text fit between edges
-			var spacing = 12.0;
+			var spacing = 8.0;
 
 			// Figure out how far off center the line should be drawn
 			var offset = normal.multiply(-((total - 1) * spacing)/2.0 + (n * spacing));
@@ -279,9 +279,9 @@ jQuery.fn.springy = function(params) {
 				ctx.font = (edge.data.font !== undefined) ? edge.data.font : edgeFont;
 				ctx.fillStyle = stroke;
 				var angle = Math.atan2(s2.y - s1.y, s2.x - s1.x);
-				var displacement = -8;
+				var displacement = -12;
 				if (edgeLabelsUpright && (angle > Math.PI/2 || angle < -Math.PI/2)) {
-					displacement = 8;
+					displacement = -4;
 					angle += Math.PI;
 				}
 				var textPos = s1.add(s2).divide(2).add(normal.multiply(displacement));
@@ -311,14 +311,14 @@ jQuery.fn.springy = function(params) {
 			ctx.clearRect(s.x - boxWidth/2, s.y - boxHeight/2, boxWidth, boxHeight);
 
 			// fill background
-			if (selected !== null && selected.node !== null && selected.node.id === node.id) {
-				ctx.fillStyle = "#FFFFE0";
-			} else if (nearest !== null && nearest.node !== null && nearest.node.id === node.id) {
-				ctx.fillStyle = "#EEEEEE";
-			} else {
-				ctx.fillStyle = "#FFFFFF";
-			}
-			ctx.fillRect(s.x - boxWidth/2, s.y - boxHeight/2, boxWidth, boxHeight);
+			//if (selected !== null && selected.node !== null && selected.node.id === node.id) {
+			//	ctx.fillStyle = "#FFFFE0";
+			//} else if (nearest !== null && nearest.node !== null && nearest.node.id === node.id) {
+			//	ctx.fillStyle = "#EEEEEE";
+			//} else {
+			//	ctx.fillStyle = "#FFFFFF";
+			//}
+			//ctx.fillRect(s.x - boxWidth/2, s.y - boxHeight/2, boxWidth, boxHeight);
 
 			if (node.data.image == undefined) {
 				ctx.textAlign = "left";

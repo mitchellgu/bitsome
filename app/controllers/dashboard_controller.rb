@@ -21,6 +21,7 @@ class DashboardController < ApplicationController
 	def graph_canvas
 		@nodes = User.all
 		@edges = []
+		@max = 0
 		@nodes.each_with_index do |n,i|
 			@nodes.each_with_index.reject {|m,j| i == j}.each do |m,j|
 				net = 0
@@ -30,6 +31,7 @@ class DashboardController < ApplicationController
 				if net > 0
 					@edges += [[net,m.name.downcase.split.join,n.name.downcase.split.join]] 
 				end
+				@max = [@max,net].max
 			end
 		end
 		print @edges
