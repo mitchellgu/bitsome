@@ -35,6 +35,7 @@ namespace :group_transactions do
                 u.amount = t['amount'].amount.to_d.abs
                 u.sender = User.find_by_coinbase_email(t['sender']['email']).email
                 u.receiver = User.find_by_coinbase_email(t['recipient']['email']).email
+                u.notes = t['notes'] rescue ""
               end
               transaction.save
             end
