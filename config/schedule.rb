@@ -17,4 +17,13 @@
 #   runner "AnotherModel.prune_old_records"
 # end
 
+set :output, {
+  error: 'log/cron_errors.log',
+  standard: 'log/cron_logs.log'
+}
+
+every 10.minutes do
+  rake "group_transactions:update"
+end
+
 # Learn more: http://github.com/javan/whenever
